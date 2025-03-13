@@ -1,0 +1,10 @@
+^C:\DEVELOPMENT\C++\LAB4\BUILD\_DEPS\GTEST-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Development/c++/lab4/build/_deps/gtest-subbuild -BC:/Development/c++/lab4/build/_deps/gtest-subbuild --check-stamp-file C:/Development/c++/lab4/build/_deps/gtest-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

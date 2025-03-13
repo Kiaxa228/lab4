@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Development/c++/lab4/build/cmake_install.cmake",
+		"C:/Development/c++/lab4/build/_deps/gtest-build/cmake_install.cmake",
+		"C:/Development/c++/lab4/build/_deps/gtest-build/googlemock/cmake_install.cmake",
+		"C:/Development/c++/lab4/build/_deps/gtest-build/googletest/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

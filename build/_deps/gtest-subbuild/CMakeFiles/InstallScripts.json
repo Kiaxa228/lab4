@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Development/c++/lab4/build/_deps/gtest-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
