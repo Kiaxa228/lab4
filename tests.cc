@@ -8,7 +8,8 @@
 #include <memory>
 #include <cmath>
 
-// Тесты для Point
+#define M_PI 3.14159265358979323846
+
 TEST(PointTest, ConstructorAndGetters)
 {
     Point<int> p(3, 4);
@@ -25,11 +26,10 @@ TEST(PointTest, Setters)
     EXPECT_EQ(p.getY(), 6);
 }
 
-// Тесты для Rhombus
 TEST(RhombusTest, Area)
 {
     Rhombus<int> r(0, 0, 4, 6);
-    EXPECT_DOUBLE_EQ(static_cast<double>(r), 12.0); // Площадь = (4 * 6) / 2 = 12
+    EXPECT_DOUBLE_EQ(static_cast<double>(r), 12.0);
 }
 
 TEST(RhombusTest, GeometricCenter)
@@ -47,11 +47,10 @@ TEST(RhombusTest, CopyConstructor)
     EXPECT_TRUE(r1 == r2);
 }
 
-// Тесты для Pentagon
 TEST(PentagonTest, Area)
 {
     Pentagon<double> p(0, 0, 1);
-    double expectedArea = 5 * std::sin(2 * M_PI / 5) / 2; // Формула площади правильного пятиугольника
+    double expectedArea = 5 * std::sin(2 * M_PI / 5) / 2;
     EXPECT_NEAR(p.area(), expectedArea, 0.0001);
 }
 
@@ -63,11 +62,10 @@ TEST(PentagonTest, GeometricCenter)
     EXPECT_EQ(center.getY(), 5);
 }
 
-// Тесты для Hexagon
 TEST(HexagonTest, Area)
 {
     Hexagon<double> h(0, 0, 1);
-    double expectedArea = 3 * std::sqrt(3) / 2; // Формула площади правильного шестиугольника
+    double expectedArea = 3 * std::sqrt(3) / 2;
     EXPECT_NEAR(h.area(), expectedArea, 0.0001);
 }
 
@@ -79,17 +77,16 @@ TEST(HexagonTest, GeometricCenter)
     EXPECT_EQ(center.getY(), 4);
 }
 
-// Тесты для Array
 TEST(ArrayTest, PushBackAndSize)
 {
-    Array<std::shared_ptr<Figure<int>>> arr;
+    Array<Figure<int>> arr;
     arr.push_back(std::make_shared<Rhombus<int>>(0, 0, 4, 6));
     EXPECT_EQ(arr.size(), 1);
 }
 
 TEST(ArrayTest, Remove)
 {
-    Array<std::shared_ptr<Figure<int>>> arr;
+    Array<Figure<int>> arr;
     arr.push_back(std::make_shared<Rhombus<int>>(0, 0, 4, 6));
     arr.push_back(std::make_shared<Pentagon<int>>(0, 0, 5));
     arr.remove(0);
@@ -98,7 +95,7 @@ TEST(ArrayTest, Remove)
 
 TEST(ArrayTest, AccessOperator)
 {
-    Array<std::shared_ptr<Figure<int>>> arr;
+    Array<Figure<int>> arr;
     auto rhombus = std::make_shared<Rhombus<int>>(0, 0, 4, 6);
     arr.push_back(rhombus);
     EXPECT_DOUBLE_EQ(static_cast<double>(*arr[0]), 12.0);
@@ -107,17 +104,16 @@ TEST(ArrayTest, AccessOperator)
 TEST(ArrayTest, MoveSemantics)
 {
     Array<Rhombus<int>> arr;
-    arr.push_back(Rhombus<int>(0, 0, 4, 6));
-    arr.push_back(Rhombus<int>(1, 1, 6, 8));
-    arr.push_back(Rhombus<int>(2, 2, 8, 10)); // Это вызовет resize
+    arr.push_back(std::make_shared<Rhombus<int>>(0, 0, 4, 6));
+    arr.push_back(std::make_shared<Rhombus<int>>(1, 1, 6, 8));
+    arr.push_back(std::make_shared<Rhombus<int>>(2, 2, 8, 10));
     EXPECT_EQ(arr.size(), 3);
-    EXPECT_DOUBLE_EQ(static_cast<double>(arr[0]), 12.0);
+    EXPECT_DOUBLE_EQ(static_cast<double>(*arr[0]), 12.0);
 }
 
-// Тест полиморфизма
 TEST(PolymorphismTest, FigureArray)
 {
-    Array<std::shared_ptr<Figure<int>>> figures;
+    Array<Figure<int>> figures;
     figures.push_back(std::make_shared<Rhombus<int>>(0, 0, 4, 6));
     figures.push_back(std::make_shared<Pentagon<int>>(0, 0, 5));
     figures.push_back(std::make_shared<Hexagon<int>>(0, 0, 3));

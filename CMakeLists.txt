@@ -3,8 +3,7 @@ project(GoogleTest)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-
+add_compile_options(/MDd)
 include(FetchContent)
 FetchContent_Declare(
     gtest

@@ -6,6 +6,10 @@
 template <typename T, typename = std::enable_if_t<std::is_scalar_v<T>>>
 class Hexagon : public Figure<T>
 {
+private:
+    T centerX_;
+    T centerY_;
+
 public:
     Hexagon(T centerX, T centerY, T radius);
     Point<T> geometricCenter() const override;

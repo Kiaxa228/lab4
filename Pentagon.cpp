@@ -1,10 +1,11 @@
 #include "Pentagon.h"
 #include <cmath>
 #include <iostream>
+
 #define M_PI 3.14159265358979323846
 
 template <typename T, typename U>
-Pentagon<T, U>::Pentagon(T centerX, T centerY, T radius)
+Pentagon<T, U>::Pentagon(T centerX, T centerY, T radius) : centerX_(centerX), centerY_(centerY)
 {
     for (int i = 0; i < 5; ++i)
     {
@@ -18,7 +19,7 @@ Pentagon<T, U>::Pentagon(T centerX, T centerY, T radius)
 template <typename T, typename U>
 Point<T> Pentagon<T, U>::geometricCenter() const
 {
-    return Point<T>(this->points[0]->getX(), this->points[0]->getY());
+    return Point<T>(centerX_, centerY_);
 }
 
 template <typename T, typename U>
